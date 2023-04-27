@@ -1,0 +1,5 @@
+$ docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS                      PORTS     NAMES
+754bf7f63897   nginx:alpine   "/docker-entrypoint.…"   About a minute ago   Up About a minute           80/tcp    trusting_lovelace
+19778a125120   nginx:alpine   "/docker-entrypoint.…"   3 minutes ago        Exited (0) 50 seconds ago             xenodochial_lalande
+e17be4c1fd85   nginx:alpine   "/docker-entrypoint.…"   3 minutes ago        Exited (0) 56 seconds ago             vigilant_gagarin

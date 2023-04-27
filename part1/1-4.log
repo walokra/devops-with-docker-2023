@@ -1,0 +1,8 @@
+$ docker run -it --name foo ubuntu
+# apt update && apt install -y curl
+$ docker start foo
+$ docker exec -it foo sh -c 'while true; do echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website; done'
+
+Smart solution:
+
+$ docker run --rm -it ubuntu sh -c 'apt update && apt install -y curl && while true; do echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website; done'
