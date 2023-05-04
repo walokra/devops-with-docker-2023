@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  example-backend:
+    container_name: example-backend
+    build: ./example-backend
+    ports:
+      - 8080:8080
+    environment:
+      REDIS_HOST: redis
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: postgres
+      POSTGRES_DATABASE: postgres
+      # 2-9
+      REQUEST_ORIGIN: http://localhost
+
+  example-frontend:
+    container_name: example-frontend
+    build: ./example-frontend
+    ports:
+      - 5001:5000
+    environment:
+      # 2-9
+      REACT_APP_BACKEND_UR: http://localhost/api
+
+  redis:
+    container_name: redis
+    image: redis
+    restart: unless-stopped
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.23-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+  postgres:
+    container_name: postgres
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./database:/var/lib/postgresql/data
